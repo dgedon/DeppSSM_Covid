@@ -106,14 +106,14 @@ if __name__ == "__main__":
     options = {
         'dataset': 'covid',
         'model': 'STORN',
-        'do_train': False,
+        'do_train': True,
         'do_test': True,
         'normalize': True,
-        'seed': 1241,
+        'seed': 1234,
         'optim': 'Adam',
         'showfig': True,
         'savefig': True,
-        'test_name': 'model_11_11_full_8',
+        'test_name': 'model_11_11_full_1',
         'data_file_name': os.getcwd() + '/data/covid/covid_uu_11_11.csv',
         't_not_trained': 0,  # number of last data days not used for training
         'prediction_steps': 14,  # number of recursive prediction steps
