@@ -1,0 +1,9 @@
+.idea/
+/__pycache__/
+
+# learnt models
+/log
+
+# data
+/data/covid/
+
