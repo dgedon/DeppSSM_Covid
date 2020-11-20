@@ -2,6 +2,7 @@ import os
 import json
 import torch
 from tqdm import tqdm
+import pandas as pd
 
 # import user-written files
 import data.loader as loader
@@ -116,4 +117,11 @@ if __name__ == "__main__":
                                       title,
                                       opt,
                                       path=main_options['model_path'],
-                                      file_name='ensemble_predictions_1StepAhead_')
+                                      file_name='ensemble_predictions_recursive_')
+
+    # %% save prediction as csv.file
+    data_store = pd.DataFrame(y_recursive_mu.squeeze().transpose())
+    data_store.to_csv(os.path.join(main_options['model_path'], 'results_mean.csv'), index=False)
+
+    data_store = pd.DataFrame(y_recursive_std.squeeze().transpose())
+    data_store.to_csv(os.path.join(main_options['model_path'], 'results_std.csv'), index=False)

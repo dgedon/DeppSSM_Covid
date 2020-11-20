@@ -1,6 +1,9 @@
 # import generic libraries
 import torch
+import os
 import matplotlib.pyplot as plt
+import pandas as pd
+
 # import user-writte files
 import utils.datavisualizer as dv
 import utils.dataevaluater as de
@@ -55,7 +58,7 @@ def run_test(options, loaders, df, path_general, file_name_general, **kwargs):
                           label_y,
                           title,
                           options,
-                          path_general=path_general,
+                          path=os.path.join(path_general, 'results'),
                           file_name_general=file_name_general + '_1StepAhead_')
 
     # %% do recursive prediction
@@ -84,12 +87,16 @@ def run_test(options, loaders, df, path_general, file_name_general, **kwargs):
                           label_y,
                           title,
                           options,
-                          path_general=path_general,
+                          path=os.path.join(path_general, 'results'),
                           file_name_general=file_name_general + '_recursive')
 
     # %% compute performance values
     # compute RMSE
     rmse = de.compute_rmse(y_test, y_stepahead, doprint=True)
+
+    # %% save results
+    data_store = pd.DataFrame(y_recursive.squeeze().transpose())
+    data_store.to_csv(os.path.join(path_general, 'results', 'results.csv'), index=False)
 
     # %% Collect data
     # options_dict

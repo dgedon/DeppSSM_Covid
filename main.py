@@ -106,7 +106,7 @@ if __name__ == "__main__":
     options = {
         'dataset': 'covid',
         'model': 'STORN',
-        'do_train': True,
+        'do_train': False,
         'do_test': True,
         'normalize': True,
         'seed': 1234,
